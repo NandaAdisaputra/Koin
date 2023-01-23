@@ -2,22 +2,21 @@ package com.nandaadisaputra.koin.home
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nandaadisaputra.koin.R
 import com.nandaadisaputra.koin.core.data.Resource
 import com.nandaadisaputra.koin.core.ui.TourismAdapter
-import com.nandaadisaputra.koin.core.ui.ViewModelFactory
 import com.nandaadisaputra.koin.databinding.FragmentHomeBinding
 import com.nandaadisaputra.koin.detail.DetailTourismActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
-
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by viewModel()
+//    private lateinit var homeViewModel: HomeViewModel
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -41,9 +40,10 @@ class HomeFragment : Fragment() {
                 intent.putExtra(DetailTourismActivity.EXTRA_DATA, selectedData)
                 startActivity(intent)
             }
+//TODO hapus kode berikut
 
-            val factory = ViewModelFactory.getInstance(requireActivity())
-            homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
+//            val factory = ViewModelFactory.getInstance(requireActivity())
+//            homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
             homeViewModel.tourism.observe(viewLifecycleOwner) { tourism ->
                 if (tourism != null) {
